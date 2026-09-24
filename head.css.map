@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/head/head.css"],
+  "sourcesContent": [".navbar {\r\n  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;\r\n}\r\n\r\n.nav-link {\r\n  transition: color 0.2s ease-in-out;\r\n}\r\n\r\n.nav-link:hover {\r\n  color: #38bdf8 !important;\r\n}\r\n\r\n.dropdown-menu {\r\n  border-radius: 0.75rem;\r\n  border: 1px solid rgba(0, 0, 0, 0.08);\r\n}\r\n\r\n.input-group-text, .form-control {\r\n  background-color: #f8fafc;\r\n}\r\n\r\n.form-control:focus {\r\n  box-shadow: none;\r\n  background-color: #ffffff;\r\n}"],
+  "mappings": ";AAAA,CAAA;AACE;IAAA;MAAA,MAAA;MAAA,QAAA,EAAA;MAAA,QAAA;AACF;AAEA,CAAA;AACE,cAAA,MAAA,KAAA;AACF;AAEA,CAJA,QAIA;AACE,SAAA;AACF;AAEA,CAAA;AACE,iBAAA;AACA,UAAA,IAAA,MAAA,KAAA,CAAA,EAAA,CAAA,EAAA,CAAA,EAAA;AACF;AAEA,CAAA;AAAA,CAAA;AACE,oBAAA;AACF;AAEA,CAJA,YAIA;AACE,cAAA;AACA,oBAAA;AACF;",
+  "names": []
+}
