@@ -1,0 +1,25 @@
+.navbar {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+}
+
+.nav-link {
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #38bdf8 !important;
+}
+
+.dropdown-menu {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.input-group-text, .form-control {
+  background-color: #f8fafc;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  background-color: #ffffff;
+}

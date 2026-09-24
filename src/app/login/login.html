@@ -1,0 +1,178 @@
+<!-- src/app/inicio/login/login.component.html -->
+<div class="min-h-screen flex">
+
+  <!-- PANEL IZQUIERDO: Formulario -->
+  <div class="w-full md:w-1/2 flex items-center justify-center p-8 bg-white">
+    <div class="w-full max-w-md">
+
+      <!-- Logo / Volver -->
+      <a routerLink="/" class="inline-flex items-center gap-2 text-blue-900 hover:text-blue-700 mb-8 transition">
+        <span class="text-2xl">←</span>
+        <span class="text-sm font-medium">Volver al inicio</span>
+      </a>
+
+      <!-- Título -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-blue-900 mb-2">
+          {{ modo === 'login' ? 'Bienvenido de nuevo' : 'Crea tu cuenta' }}
+        </h1>
+        <p class="text-gray-600">
+          {{ modo === 'login' 
+              ? 'Ingresa tus credenciales para acceder al sistema.' 
+              : 'Regístrate para comenzar a solicitar préstamos.' }}
+        </p>
+      </div>
+
+      <!-- Tabs de Login/Registro -->
+      <div class="flex bg-gray-100 rounded-lg p-1 mb-6">
+        <button 
+          (click)="cambiarModo('login')"
+          [class.bg-white]="modo === 'login'"
+          [class.shadow-sm]="modo === 'login'"
+          [class.text-blue-900]="modo === 'login'"
+          class="flex-1 py-2 rounded-md text-sm font-semibold text-gray-500 transition">
+          Iniciar Sesión
+        </button>
+        <button 
+          (click)="cambiarModo('registro')"
+          [class.bg-white]="modo === 'registro'"
+          [class.shadow-sm]="modo === 'registro'"
+          [class.text-blue-900]="modo === 'registro'"
+          class="flex-1 py-2 rounded-md text-sm font-semibold text-gray-500 transition">
+          Registrarse
+        </button>
+      </div>
+
+      <!-- Mensajes de error/éxito -->
+      <div *ngIf="errorMensaje" 
+           class="mb-4 p-3 bg-red-50 border-l-4 border-red-500 text-red-700 text-sm rounded">
+        ⚠️ {{ errorMensaje }}
+      </div>
+      <div *ngIf="exitoMensaje" 
+           class="mb-4 p-3 bg-green-50 border-l-4 border-green-500 text-green-700 text-sm rounded">
+        ✅ {{ exitoMensaje }}
+      </div>
+
+      <!-- Formulario -->
+      <form (ngSubmit)="onSubmit()" class="space-y-5">
+
+        <!-- Nombre completo (solo en registro) -->
+        <div *ngIf="modo === 'registro'">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+          <input 
+            type="text" 
+            [(ngModel)]="nombreCompleto" 
+            name="nombreCompleto"
+            placeholder="Ej. Juan Pérez García"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition">
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Correo Institucional</label>
+          <input 
+            type="email" 
+            [(ngModel)]="email" 
+            name="email"
+            placeholder="tu.correo@universidad.edu"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition">
+        </div>
+
+        <!-- Contraseña -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+          <div class="relative">
+            <input 
+              [type]="mostrarPassword ? 'text' : 'password'" 
+              [(ngModel)]="password" 
+              name="password"
+              placeholder="Mínimo 6 caracteres"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition pr-12">
+            <button 
+              type="button"
+              (click)="togglePassword()"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-blue-900">
+              {{ mostrarPassword ? '👁️' : '👁️‍🗨️' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Confirmar contraseña (solo en registro) -->
+        <div *ngIf="modo === 'registro'">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Confirmar Contraseña</label>
+          <input 
+            [type]="mostrarPassword ? 'text' : 'password'" 
+            [(ngModel)]="confirmPassword" 
+            name="confirmPassword"
+            placeholder="Repite tu contraseña"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition">
+        </div>
+
+        <!-- Botón Submit -->
+        <button 
+          type="submit" 
+          [disabled]="cargando"
+          class="w-full bg-blue-900 hover:bg-blue-800 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 rounded-lg transition transform hover:scale-[1.02] shadow-md">
+          <span *ngIf="!cargando">
+            {{ modo === 'login' ? 'Iniciar Sesión' : 'Crear Cuenta' }}
+          </span>
+          <span *ngIf="cargando" class="flex items-center justify-center gap-2">
+            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Procesando...
+          </span>
+        </button>
+      </form>
+
+      <!-- Texto de ayuda -->
+      <p class="mt-6 text-center text-sm text-gray-600">
+        {{ modo === 'login' ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?' }}
+        <button 
+          (click)="cambiarModo(modo === 'login' ? 'registro' : 'login')"
+          class="text-blue-900 font-semibold hover:underline ml-1">
+          {{ modo === 'login' ? 'Regístrate aquí' : 'Inicia sesión' }}
+        </button>
+      </p>
+    </div>
+  </div>
+
+  <!-- PANEL DERECHO: Informativo (oculto en móvil) -->
+  <div class="hidden md:flex md:w-1/2 bg-gradient-to-br from-blue-900 to-blue-800 text-white items-center justify-center p-12 relative overflow-hidden">
+    
+    <!-- Fondo decorativo -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 left-10 text-9xl">🎓</div>
+      <div class="absolute bottom-10 right-10 text-9xl">📚</div>
+      <div class="absolute top-1/2 left-1/3 text-9xl">📦</div>
+    </div>
+
+    <div class="relative z-10 max-w-md">
+      <h2 class="text-4xl font-bold mb-6">Sistema de Préstamos Universitarios</h2>
+      <p class="text-lg text-blue-100 mb-8">
+        Gestiona equipos, espacios y eventos desde una sola plataforma centralizada.
+      </p>
+
+      <ul class="space-y-4 text-blue-100">
+        <li class="flex items-start gap-3">
+          <span class="text-yellow-400 text-xl">✔</span>
+          <span>Responsivas digitales con firma del responsable</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-yellow-400 text-xl">✔</span>
+          <span>Reserva de aulas con disponibilidad en tiempo real</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-yellow-400 text-xl">✔</span>
+          <span>Reporte de daños y seguimiento de inventario</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-yellow-400 text-xl">✔</span>
+          <span>Cartelera de eventos públicos y exclusivos</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

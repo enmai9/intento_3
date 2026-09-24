@@ -1,0 +1,46 @@
+<section class="min-h-screen bg-slate-100 px-6 py-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-8">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-red-700">Administración</p>
+      <h1 class="mt-2 text-3xl font-bold text-slate-900">Panel del administrador</h1>
+    </div>
+
+    <div *ngIf="loading" class="rounded-2xl bg-white p-8 text-center text-slate-600 shadow-sm">
+      Cargando panel...
+    </div>
+
+    <div *ngIf="!loading" class="grid gap-6 md:grid-cols-3">
+      <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+        <p class="text-sm text-slate-500">Usuarios</p>
+        <h2 class="mt-2 text-4xl font-bold text-slate-900">{{ users.length }}</h2>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+        <p class="text-sm text-slate-500">Inventario</p>
+        <h2 class="mt-2 text-4xl font-bold text-slate-900">{{ items.length }}</h2>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+        <p class="text-sm text-slate-500">Préstamos</p>
+        <h2 class="mt-2 text-4xl font-bold text-slate-900">{{ loans.length }}</h2>
+      </div>
+    </div>
+
+    <div class="mt-8 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      <h3 class="mb-4 text-xl font-bold text-slate-900">Solicitudes recientes</h3>
+
+      <div *ngIf="loans.length === 0" class="text-slate-500">No hay solicitudes registradas.</div>
+
+      <div *ngIf="loans.length > 0" class="space-y-3">
+        <div *ngFor="let loan of loans" class="flex items-center justify-between border-b border-slate-200 pb-3 last:border-b-0 last:pb-0">
+          <div>
+            <p class="font-semibold text-slate-800">Préstamo #{{ loan.id }}</p>
+            <p class="text-sm text-slate-500">Usuario: {{ loan.user_id }}</p>
+          </div>
+          <span class="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">
+            {{ loan.status }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

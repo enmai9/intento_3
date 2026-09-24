@@ -1,0 +1,78 @@
+<!-- src/app/inicio/inicio.component.html -->
+<div class="min-h-screen bg-gray-50">
+
+  <!-- 1. SECCIÓN HERO (Presentación principal) -->
+  <section class="relative bg-blue-900 text-white overflow-hidden">
+    <!-- Fondo decorativo -->
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-950 to-blue-800 opacity-90"></div>
+    
+    <div class="relative container mx-auto px-6 py-24 md:py-32 flex flex-col items-center text-center">
+      <span class="bg-yellow-500 text-blue-900 font-bold px-4 py-1 rounded-full text-sm mb-6 uppercase tracking-wide">
+        Sistema Oficial Universitario
+      </span>
+      
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 max-w-4xl">
+        Centraliza el préstamo de <span class="text-yellow-400">equipos</span> y la reserva de <span class="text-yellow-400">espacios</span>
+      </h1>
+      
+      <p class="text-lg md:text-xl text-gray-300 max-w-2xl mb-10">
+        Automatiza responsivas, evita empalmes de horarios y protege el patrimonio tecnológico de tu campus. 
+        Una solución diseñada a la medida de nuestra universidad.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a routerLink="/inicio/login" 
+           class="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold px-8 py-4 rounded-lg text-lg transition transform hover:scale-105 shadow-lg">
+          Acceder al Sistema
+        </a>
+        <a href="#beneficios" 
+           class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white font-bold px-8 py-4 rounded-lg text-lg transition">
+          Conocer más
+        </a>
+      </div>
+    </div>
+
+    <!-- Onda decorativa inferior -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 45C840 60 960 90 1080 105C1200 120 1320 120 1380 120L1440 120V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f9fafb"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 2. SECCIÓN BENEFICIOS -->
+  <section id="beneficios" class="py-20 container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">¿Qué resuelve nuestro sistema?</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Basado en las necesidades reales de nuestra comunidad, eliminamos la burocracia y protegemos nuestros recursos.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div *ngFor="let beneficio of beneficios" 
+           class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition border-t-4 border-yellow-500">
+        <div class="text-4xl mb-4">{{ beneficio.icono }}</div>
+        <h3 class="text-xl font-bold text-blue-900 mb-2">{{ beneficio.titulo }}</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">{{ beneficio.descripcion }}</p>
+      </div>
+    </div>
+  </section>
+
+ 
+
+  <!-- 4. LLAMADO A LA ACCIÓN FINAL -->
+  <section class="py-20 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">¿Listo para optimizar los recursos de tu campus?</h2>
+      <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+        Únete al sistema centralizado de préstamos y reservas. Fomenta la responsabilidad y agiliza los trámites burocráticos.
+      </p>
+      <a routerLink="/inicio/login" 
+         class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold px-10 py-4 rounded-lg text-xl transition transform hover:scale-105 shadow-xl">
+        Iniciar Sesión / Registrarse
+      </a>
+    </div>
+  </section>
+
+</div>

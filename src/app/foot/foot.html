@@ -1,0 +1,79 @@
+<!-- src/app/foot/footer/footer.component.html -->
+<footer class="bg-blue-950 text-gray-300 pt-10 pb-6 mt-auto">
+  <div class="container mx-auto px-4">
+    
+    <!-- Sección Principal (3 Columnas) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      
+      <!-- Columna 1: Sobre el Sistema -->
+      <div>
+        <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+          <span class="text-2xl">🎓</span> Préstamos Universitarios
+        </h3>
+        <p class="text-sm leading-relaxed text-gray-400">
+          Sistema oficial para la solicitud y gestión de préstamos de equipos, 
+          material didáctico y reserva de espacios académicos.
+        </p>
+      </div>
+
+      <!-- Columna 2: Enlaces Rápidos -->
+      <div>
+        <h3 class="text-white text-lg font-bold mb-4">Enlaces Rápidos</h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a routerLink="/principal" class="hover:text-yellow-400 transition flex items-center gap-2">
+              <span>›</span> Inicio
+            </a>
+          </li>
+          <li>
+            <a routerLink="/principal/equipos" class="hover:text-yellow-400 transition flex items-center gap-2">
+              <span>›</span> Catálogo de Equipos
+            </a>
+          </li>
+          <li>
+            <a routerLink="/principal/espacios" class="hover:text-yellow-400 transition flex items-center gap-2">
+              <span>›</span> Reserva de Espacios
+            </a>
+          </li>
+          <li>
+            <a routerLink="/inicio" class="hover:text-yellow-400 transition flex items-center gap-2">
+              <span>›</span> Iniciar Sesión
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Contacto -->
+      <div>
+        <h3 class="text-white text-lg font-bold mb-4">Contacto</h3>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li class="flex items-start gap-2">
+            <span class="text-yellow-400"></span>
+            <span>{{ contactInfo.address }}</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-yellow-400"></span>
+            <a href="mailto:{{contactInfo.email}}" class="hover:text-white transition">
+              {{ contactInfo.email }}
+            </a>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-yellow-400"></span>
+            <span>{{ contactInfo.phone }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Línea Divisoria -->
+    <div class="border-t border-blue-900 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+      <p>&copy; {{ currentYear }} Universidad. Todos los derechos reservados.</p>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-white transition">Aviso de Privacidad</a>
+        <a href="#" class="hover:text-white transition">Términos y Condiciones</a>
+        <a href="#" class="hover:text-white transition">Soporte Técnico</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
